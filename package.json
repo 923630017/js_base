@@ -1,0 +1,12 @@
+{
+  "name": "jsbase",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "scripts": {
+    "dev": "nodemon ./index.js -i ./data/"
+  }
+}
