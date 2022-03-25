@@ -7,87 +7,30 @@
     <title>Document</title>
     <style>
       div {
-        margin-left: 200px;
+        height: 100px;
+        width: 200px;
+        display: none;
+        background-color: red;
       }
       p {
         height: 100px;
-        border-radius: 5px;
-        margin-bottom: 10px;
-        width: 300px;
-        border: 1px solid pink;
-        text-align: center;
-        box-sizing: border-box;
-        line-height: 100px;
-      }
-      img {
-        height: 100px;
+        width: 200px;
+        visibility: hidden;
       }
     </style>
   </head>
   <body>
-    <div>
-      <p>211111111221</p>
-      <p>211111111221</p>
-      <p>211111111221</p>
-      <img data-src="./1.png" />
-      <p>211111111221</p>
-      <p>211111111221</p>
-      <p>211111111221</p>
-      <p>211111111221</p>
-      <p>211111111221</p>
-      <p>211111111221</p>
-      <p>211111111221</p>
-      <p>211111111221</p>
-      <p>211111111221</p>
-      <img data-src="./2.jpg" />
-      <p>211111111221</p>
-      <p>211111111221</p>
-      <p>211111111221</p>
-      <p>211111111221</p>
-      <p>211111111221</p>
-      <img data-src="./3.jpg" />
-      <p id="p">211111111221</p>
-      <p>211111111221</p>
-      <p>211111111221</p>
-      <p>211111111221</p>
-    </div>
+    <div>sdsd</div>
+    <p>s</p>
     <script>
-      // // 懒加载 利用scroll事件监听
-      var imgs = document.querySelectorAll("img");
-      lazyload(imgs); //页面载入完毕加载可是区域内的图片
-
-      function lazyload(imgs) {
-        //监听页面滚动事件
-        var seeHeight = window.innerHeight; //可见区域高度
-        imgs.forEach((img) => {
-          // dom据头顶的高度
-          const imageTop = img.getBoundingClientRect().top;
-          if (imageTop <= seeHeight) {
-            img.src = img.getAttribute("data-src");
-          }
-        });
-      }
-      window.addEventListener(
-        "scroll",
-        throttle(function () {
-          lazyload(imgs);
-        }, 5000)
-      );
-
-      function throttle(func, wait) {
-        var context, args;
-        var previous = 0;
-        return function () {
-          var now = +new Date();
-          context = this;
-          args = arguments;
-          console.log(imgs);
-          if (now - previous > wait) {
-            func.apply(context, args);
-            previous = now;
-          }
-        };
-      }
+      var reverse = function (x) {
+        var t = x.toString().split("").reverse().join("");
+        if (x < 0) {
+          t = -Math.abs(x).toString().split("").reverse().join("");
+        }
+        return t
+      };
+      console.log(reverse(21))
     </script>
   </body>
 </html>
