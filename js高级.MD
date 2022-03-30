@@ -6,7 +6,7 @@
 
 2.字符串的转义序列表，例如\u03a3 这种只能算一个字符，因此长度为1， toString()方法转化为字符传， String()也是，undfined和null只有用String()方法
 
-3. Object 类型：
+3.Object 类型：
    1.contructor: 指向创建对象的构造函数， 
    2.hasOwnProperty(propertyName): 判断对象是否有某个属性， 不包括对象原型链， 
    3. isPropertyOf(object) 当前一个对象是否是个对象的原型，
