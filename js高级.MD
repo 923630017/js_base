@@ -1,3 +1,13 @@
+git合并分支
+  1. 先将dev先push到远程，
+  2. 然后git checkout master分支， 最后pull一下master,不管个人开发还是集体开发，
+  3. 然后把dev分支的代码合并到master上, 执行git merge dev
+  4. 查看状态 git status, 最后 git push origin master， push到远程厂库
+  
+  
+  
+**** js高级程序设计
+ 
 1.script: async 和defer 都是异步加载，不阻止js下载 等文档渲染完在进行加载 async执行js文件可能顺序不同
 
 **2. 语言基础
