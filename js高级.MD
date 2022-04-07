@@ -76,3 +76,42 @@ git合并分支
       第三次匹配全局
       matches = pattern.exec(text); 
       console.log(matches.index); // 10
+   test方法：此方法用于判断字符串是否匹配到；
+3.原始包装类：Boolean、Number 和 String。
+  1. Number: toFix(n)返回n位小数的字符串数字；toExponential(n):返回n位小数的科学计数法；Number.isInteger(number) 是不是整数
+  2. String: 主要方法： 
+     1.length 字符串长度
+     2.charAt(index) 返回字符串对应索引的字符 如果超出长度 则返回空
+     3.concat(): 返回多个字符串拼接 不改变原字符串
+     4.slice(n,m): 截取字符串的方法；从索引n开始，到索引m之前的；不改变原字符串，不给参数是默认复制字符串；该方法如果传负数：直接n+字符串length， m+字服串length; 如果两者加了都还是负数，则返回空字符串；如果加了n还是负数，m是正整数，则n就直接忽略为0；
+     5.substring(n,m): 截取字符串索引n开始，到索引m之前的字符；不改变原字符串，不给参数是默认复制字符串；传负数时；直接将n或者m转为0；
+     6.substr(n,m); 截取从索引n开始的，m个字符串；不改变原字符串，不给参数是默认复制字符串； 如果n为负数，则直接加字符串长度，如果m为负数，则m直接为0；
+     7.indexOf(str, n):返回字符串从左边n索引开始寻找str字符，如果找到则返回index，如果找不到就返回-1；
+     8.lastIndexOf(str, n)：从字符串索引n开始，从右往左开始搜索后返回的index;
+     9.startsWith(str, n): 从索引n开始匹配是否包含字符串str；返回boolean;这里必须从一开始就匹配；例如：'abcdef'.startsWith('a') => true; 'abcdef'.startsWith('b') => false;
+     10.endsWith(str, n): 从字符串最后面往前第n个字段开始往前匹配，必须第一次匹配上才返回true,和startsWith一致；
+     11.includes(str, n): 从字符串n索引开始，只有包含str就会返回true;
+     12.trim()：返回清除字符串左右空格： 不影响源字符串
+     13.repeat(num): 返回复制字符串nun遍；1则返回字符串本身，0返回空字符；不影响原字符串
+     14.字符迭代： 字符串的原型上暴露了一个@@iterator 方法，表示可以迭代字符串的每个字符；let stringIter = str[Symbol.interator]()，这就是一个迭代器，stringIter.next()。正是因为有迭代器；所以字符串才能使用for of进行访问每个字符，才能使用字符串解构[...str]
+     15.字符串大小写：toLocalUpperCase()/toUpperCase(),这是转为大写，toLoacalLowerCase()/toLowerCase()转化为小写，toLocalUpperCase()、toLoacalLowerCase()用于特殊少数语言中的大小写转化，因此最好用这两者进行大小写转换；
+     16.match(regExp): 接收一个正则规则，和正则的exec()方法一致，返回一个数组，包括匹配的index索引和input属性为匹配的字符串；
+     17.search(regExp):接收一个正则，返回第一匹配正则的位置索引，如果没用则返回-1；
+     18.replace(regExp/string, string|function): 第一个参数为正则或者字符串，第二个为需要提成的字符串；用正则可以方便的替换全部str.replace(/aa/g, 'bb'):str字符串中，替换所有的'aa'字符串为'bb'；第二个参数为函数时，可以也可以替换，目前我认为需要用函数作为参数是当替换多种字符，比如遇到'a'需要替换成'A','b'需要替换成'B'这种，
+<!--      'abcd'.replace(/[ab]/g,function(match, index, text) => {
+         // 这里遇到a或者b都要替换
+         // match 匹配的字符 a 或者b
+         // index 匹配时的索引index 分别为0 1
+         // 匹配的整个字符串 abcd
+         //这个函数返回值为匹配的字段
+         if(match == 'a') return 'A'
+         if(match === 'b') return 'B'
+      }) -->
+     19.split(string|regExp, num): 返回将字符串转化为数组, string|regExp：分隔符，如果最后一个满足分隔符，则数组最后一项为空字符串; num为返回的数组不能超过的长度
+
+  3.Global对象：不能显示访问，
+    1.encodeURI()和 encodeURIComponent()方法对用于编码统一资源标识符（URI），以便传给浏览器。有效的URI不能包含某些字符，比如空格，encodeURI()着眼于整个url,encodeURIComponent()主要是部分url,前者不能编码一些特殊符号，例如冒号、问号等，而后者就可以编译，后者一般用于编译请求参数；
+    2.decodeURI()和 decodeURIComponent()对编过码的进行解码；
+    3.eval(js代码片段)方法 相当于js执行器；该执行的代码属于调用所在的上下文；因此在eval()执行器里可以调用上下文的变量函数，同样外部亦如此；
+    4.window一般默认为浏览器的Global对象的代理。
+    5.Math: ceil()向上取整；floor()向下取整；round()四舍五入；fround()方法返回数值最接近的单精度（32 位）浮点值表示。console.log(Math.fround(25.9)); // 25.899999618530273 random():随机，包括0不包括1；
