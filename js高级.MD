@@ -114,4 +114,9 @@ git合并分支
     2.decodeURI()和 decodeURIComponent()对编过码的进行解码；
     3.eval(js代码片段)方法 相当于js执行器；该执行的代码属于调用所在的上下文；因此在eval()执行器里可以调用上下文的变量函数，同样外部亦如此；
     4.window一般默认为浏览器的Global对象的代理。
-    5.Math: ceil()向上取整；floor()向下取整；round()四舍五入；fround()方法返回数值最接近的单精度（32 位）浮点值表示。console.log(Math.fround(25.9)); // 25.899999618530273 random():随机，包括0不包括1；
+    5.Math: ceil()向上取整；floor()向下取整；round()四舍五入；fround()方法返回数值最接近的单精度（32 位）浮点值表示。console.log(Math.fround(25.9)); // 25.899999618530273 random():随机，包括0不包括1；Math.floor(Math.Random() * (max-min+1) + min)
+    
+**6 集合引用类型
+
+1.object:属性名key可以是字符串或数值
+  1.
