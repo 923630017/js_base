@@ -120,4 +120,8 @@ git合并分支
 
 1.object:属性名key可以是字符串或数值
 2.数组array: 
-   
+  1. Array.from()：将类数组转化为数组；只要是可迭代的，就可以化为数组；这个方法还可以实现数组的浅复制；第2个参数是一个有返回值得函数，函数得参数是数组得每项，类似于实现 Array.from().map()
+  2. Array.of():将其参数转化为数组；
+  3. 检测数组：1:arr instantceof Array 2: Array.isArray(arr);
+  4. 数组的迭代器方法：keys():将返回数组索引的迭代器；values()返回数组每项值得迭代器；entries()返回索引和值得迭代器；这些因为是迭代器，因此可以通过Array.from()转化为数组 
+  5. 
