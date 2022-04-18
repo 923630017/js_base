@@ -124,4 +124,16 @@ git合并分支
   2. Array.of():将其参数转化为数组；
   3. 检测数组：1:arr instantceof Array 2: Array.isArray(arr);
   4. 数组的迭代器方法：keys():将返回数组索引的迭代器；values()返回数组每项值得迭代器；entries()返回索引和值得迭代器；这些因为是迭代器，因此可以通过Array.from()转化为数组 
-  5. 
+  5. toString()返回每项字符由逗号拼接的字符串；valueOf()则返回数组本身；
+  6. join(分隔符)：将数组由分隔符拼接的字符串；
+  7. push() 推入数据 返回数组长度；
+  8. pop() 删除最后一下项 返回数组最后一项；
+  9. shift(item)第一项添加 返回数组长度；
+  10. unshift()删除数组第一项 返回第一项元素；
+  11. reverse() 反向排列数组 会修改数组；
+  12. sort() 默认按ascall排序；sort((a,b) => a-b);如果第一参数a排在第二个参数b前面，则返回负数，反之则返回正数； 此方法会修改原数组
+  13. concat(‘3’，[323,3,32])数字拼接，返回拼接数组；原数组不变；如果参数是一层数组，默认会打平拼接到数组中,如果不想打平参数数组，则设置参数数组的[Symbol.isConcatSpreadable]为false;
+  14. slice(start, end): 获取从索引start 开始到end之前，不包括end;r如果为负数则加上数组长度;如果start大于end；则返回空数组；
+  15. splice(index, num, item1, item2.....); //删除索引 删除个数 替换的元素； 返回删除元素组成的数组，没有删除元素时返回空数组；
+  16. includes()判断包含元素 indexOf()lastIndexOf()也是；没有返回-1；
+  17. find() 返回满足条件的第一个元素没有返回undefined； findIndex()返回第一个满足条件元素的索引,没有返回-1；
