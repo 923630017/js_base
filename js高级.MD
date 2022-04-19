@@ -139,10 +139,8 @@ git合并分支
   17. find() 返回满足条件的第一个元素没有返回undefined； findIndex()返回第一个满足条件元素的索引,没有返回-1；
   18. every() some() filter() foreach() map() 循环数组 不改变原数组
   19. reduce((pre, cur, index) => { return xxx }, init); 这个方法适合数组归并一些值，如果有init初始值，则循环arr.length次；没有init时，pre初始值是数组第一项，cur是数组第二项，此时只循环数组length-1次；
+
 3. map: map是可迭代的，存储键值对的结构， new Map() 键值可以微任意类型值；
   1: 如果初始化：传参数必须是二维数组,new Map([['key1','val1']]); 且二维数组里每一项数组的第一个为key,第二个为value,之后的自动忽略
   2. 设置：map.set(key, value); 获取查询：map.get(ket) map.has(key)返回boolean 删除某一个：map.delete(key) 删除所有：map.clear() 获取键值对数量：map.size
-  
-
-  12. sort() 默认按ascall排序；sort((a,b) => a-b);如果第一参数a排在第二个参数b前面，则返回负数，反之则返回正数； 此方法会修改原数组e认为
-  12. sort() 默认按ascall排序；sort((a,b) => a-b);如果第一参数a排在第二个参数b前面，则返回负数，反之则返回正数； 此方法会修改原数组
+ 
