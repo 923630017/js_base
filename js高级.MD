@@ -123,7 +123,7 @@ git合并分支
   1. Array.from()：将类数组转化为数组；只要是可迭代的，就可以化为数组；这个方法还可以实现数组的浅复制；第2个参数是一个有返回值得函数，函数得参数是数组得每项，类似于实现 Array.from().map()
   2. Array.of():将其参数转化为数组；
   3. 检测数组：1:arr instantceof Array 2: Array.isArray(arr);
-  4. 数组的迭代器方法：keys():将返回数组索引的迭代器；values()返回数组每项值得迭代器；entries()返回索引和值得迭代器；这些因为是迭代器，因此可以通过Array.from()转化为数组 
+  4. 数组的迭代器方法：keys():将返回数组索引的迭代器；values()返回数组每项值得迭代器；entries()返回索引和值得迭代器；这些因为是迭代器，因此可以通过Array.from()转化为数组；同时也可以通过[...interator]扩展运算转化为数组； 
   5. toString()返回每项字符由逗号拼接的字符串；valueOf()则返回数组本身；
   6. join(分隔符)：将数组由分隔符拼接的字符串；
   7. push() 推入数据 返回数组长度；
@@ -141,6 +141,8 @@ git合并分支
   19. reduce((pre, cur, index) => { return xxx }, init); 这个方法适合数组归并一些值，如果有init初始值，则循环arr.length次；没有init时，pre初始值是数组第一项，cur是数组第二项，此时只循环数组length-1次；
 
 3.map: map是可迭代的，存储键值对的结构， new Map() 键值可以微任意类型值；
-  1: 如果初始化：传参数必须是二维数组,new Map([['key1','val1']]); 且二维数组里每一项数组的第一个为key,第二个为value,之后的自动忽略
+  1: 如果初始化：传参数必须是二维数组,new Map([['key1','val1']]); 且二维数组里每一项数组的第一个为key,第二个为value,之后的自动忽略；
   2. 设置：map.set(key, value); 获取查询：map.get(ket) map.has(key)返回boolean 删除某一个：map.delete(key) 删除所有：map.clear() 获取键值对数量：map.size
- 
+  3. map.get(key) 中的key为绝对相等的获取，即对象的引用必须是同一个， 如果不是则不能获取
+  4. map的迭代器：map提供一个迭代器，以便map按顺序插入key,value;通过map.entries()获取map迭代器，是迭代器自然可以通过forof循环，同时可以通过[...map.entries()]和Arrary.from()转化为数组；同时有map.keys()和map.value()迭代器； 除了通过迭代器map.entries() forof遍历还可以通过map.forEach((value, key) => {})遍历；
+  5. map遍历forof时，oldkey在修改newKey， 但是map.get(key)获取还是通过之前的旧值oldkey获取; 
