@@ -146,3 +146,16 @@ git合并分支
   3. map.get(key) 中的key为绝对相等的获取，即对象的引用必须是同一个， 如果不是则不能获取
   4. map的迭代器：map提供一个迭代器，以便map按顺序插入key,value;通过map.entries()获取map迭代器，是迭代器自然可以通过forof循环，同时可以通过[...map.entries()]和Arrary.from()转化为数组；同时有map.keys()和map.value()迭代器； 除了通过迭代器map.entries() forof遍历还可以通过map.forEach((value, key) => {})遍历；
   5. map遍历forof时，oldkey在修改newKey， 但是map.get(key)获取还是通过之前的旧值oldkey获取; 
+  6. map和object选择
+     1：内存占用：固定大小的内存，map可以比object多存储50%的键值对；
+     2：插入性能方面：map一般比object快一些；一般大量插入操作，map更佳；
+     3：找查速度：object更加
+     4：删除性能：map删除操作delete更佳；尤其是大量删除时；
+     
+4.weakmap: 弱映射”（WeakMap）是一种新的集合类型; 有助于防止内存泄露；键只能是对象； 键名所指向的对象是弱引用，不计入垃圾回收机制； 如果该键的值没有其他变量引用，则该键值对会被垃圾回收；
+   1：new WeakMap([[ {} , 23 ]]); WeakMap还是键值对； 方法：set(key, value); has(key); get(value); detele(key); 没有clear()和size方法；
+   2：弱键：指 WeakMap的键在没有被其他引用时；就会可能被垃圾回收，比如const wm = new WeakMap(); wm.set({}, "val");这里的{}没有其他变量引用；因此当这行代码执行完，键就会被回收，同时键值也会消失，成为一个空映射；
+   3：不可迭代：因为是弱键，因此它的键/值对任何时候都可能被销毁；*** 因此weakmap没有可迭代的能力， 也就没有size方法；
+   4：使用场景：以 DOM节点作为键名的场景；以获取dom节点为WeakMap键名，其他值例如函数等WeakMap为值；当dom删除以后，自动改dom键名以及对应的值也会被自动垃圾回收，避免内存溢出；
+  
+5. set
