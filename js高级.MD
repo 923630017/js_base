@@ -163,4 +163,10 @@ git合并分支
     2：方法：add(value); has(value) size; delete(value); clear()
     3: has(value)判断是严格类型;  value是通过===判断的；除了NaN;
     4: set有默认的迭代方法values()获取迭代器；同时可以通过者 Symbol.iterator 属性，以及keys()获取相同的； entries()也是能获取迭代器key和value;key和value的值一样； 可以通过迭代器利用forof遍历。其次，set还可通过foreach方法遍历
-    5：set适合用于差集 交集 和并集的获取，但是数组对象这种格式不合适；
+    5：set适合用于差集 交集 和并集的获取，但是数组对象这种格式不合适； https://cloud.tencent.com/developer/article/1848689
+       1：并集： new Set([...s1, ...s2])
+       2：交集： new Set([...s1].filter(item => s2.has(item)))
+       3：差集： new Set([...s1].filter(item => !s2.has(item)))
+6. WeakSet: 创建的数据格式和set类似；是弱集合；只能存储对象类型的值；和weakmap同样，当值没有被其他引用时，会被垃圾回收；一般使用少；
+   1：方法： add() has() delete()
+   2: 因为弱集合，所以不知到值是否被垃圾回收，也就没有size和迭代器； 
