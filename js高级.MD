@@ -158,4 +158,9 @@ git合并分支
    3：不可迭代：因为是弱键，因此它的键/值对任何时候都可能被销毁；*** 因此weakmap没有可迭代的能力， 也就没有size方法；
    4：使用场景：以 DOM节点作为键名的场景；以获取dom节点为WeakMap键名，其他值例如函数等WeakMap为值；当dom删除以后，自动改dom键名以及对应的值也会被自动垃圾回收，避免内存溢出；
   
-5. set
+5. set: 类似于[val1, val2,val3]结构可迭代的数据类型 可利用set数据不重复做一些功能
+    1：new Set()初始化 可以用数据[1,2,3,4],也可以用迭代器的其他数据类型，例dom节点列表；注：set不能放重复的数据：例如[1,2,3,2] => [1,2,3]
+    2：方法：add(value); has(value) size; delete(value); clear()
+    3: has(value)判断是严格类型;  value是通过===判断的；除了NaN;
+    4: set有默认的迭代方法values()获取迭代器；同时可以通过者 Symbol.iterator 属性，以及keys()获取相同的； entries()也是能获取迭代器key和value;key和value的值一样； 可以通过迭代器利用forof遍历。其次，set还可通过foreach方法遍历
+    5：set适合用于差集 交集 和并集的获取，但是数组对象这种格式不合适；
