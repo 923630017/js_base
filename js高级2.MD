@@ -2,8 +2,7 @@
 ***7.迭代器
 
 1.自定义迭代器 一般自定义迭代器需要闭包，因为新的迭代运算开始，需要新的迭代器新计数，例如
- # js 
-  class Counter
+ # class Counter
    {
      contructor(limit){
         this.limit = limit;
