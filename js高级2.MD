@@ -34,4 +34,25 @@
 
 1. 属性的类型：es中用来一些内部特征描述属性特性， 通常不能直接访问这些特性；这些特性用[[]]括起来； 属性分为数据属性和访问属性
    1.数据属性：数据属性一般用于直接存储数据数值，值会重这里写入和读取，数据属性包括4个特性：[[Configurable]]：能否delete属性，[[Enumerable]]:能否通过forin循环属性，[[Writable]]：能否修改值，[[Value]]：包含属性实际的值； 如果要修改属性的特性，需要通过Object.defineProperty(obj, key, { 特性： boolean }); 特殊的属性特性：cofigurable该属性特性改为不可配置之后，不能再改回可配置；
-   2.访问器属性：
+   2.访问器属性：它是包含获取getter和设置setter函数；访问属性有四个特性:[[Configurable]]：能否delete属性，[[Enumerable]]:能否通过forin循环属性,[[Get]]：获取函数,[[Set]]：设置函数; 访问属性定义属性必须用Object.defineProperty(obj, key, { get() { return this._key_ }, set(newVal) { this._key_ = newVal, this.otherKey = newVal + 2 }} )定义；使用场景就是设置一个属性会导致其他属性改变；该思想是vue双向绑定数据实现的核心内涵；
+2. 定义多个属性
+   可以通过Object.defineProperties()定义多个属性;通过该方法定义时，此时的属性特性cofigurable等默认为false
+   # Object.defineProperties(obj, {
+     name: {
+       value: '张三丰'
+     },
+     _age: {
+       value: 23
+     },
+     age: {
+       get(){
+         return this._age   
+       },
+       set(newVal){
+         this._age_ = newValue;
+       }
+     }
+   })
+3. 获取某一个属性的特性：Object.getOwnPropertyDescriptor(obj, key); 可以分别返回数据属性的特性和访问器属性的特性；包括访问器属性的set和get函数；
+4. 获取所有的属性的特性：Object.getOwnPropertyDescriptors(obj);相当于每个属性调用Object.getOwnPropertyDescriptor()；返回的时一个对象{name: 属性特性对象，....}
+5. 
