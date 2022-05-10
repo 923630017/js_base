@@ -73,7 +73,7 @@
       }
 9. 对象解构：let { name: nameNew, age ="默认年龄" } = info; 
    解构并不要求变量必须在解构表达式中声明。不过，如果是给事先声明的变量赋值，则赋值表达式必须包含在一对括号中：
-   ￥ let personName, personAge; 
+   #  let personName, personAge; 
    let person = { 
     name: 'Matt', 
     age: 27 
