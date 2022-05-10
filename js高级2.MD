@@ -55,4 +55,28 @@
    })
 3. 获取某一个属性的特性：Object.getOwnPropertyDescriptor(obj, key); 可以分别返回数据属性的特性和访问器属性的特性；包括访问器属性的set和get函数；
 4. 获取所有的属性的特性：Object.getOwnPropertyDescriptors(obj);相当于每个属性调用Object.getOwnPropertyDescriptor()；返回的时一个对象{name: 属性特性对象，....}
-5. 
+5. 合并对象：Object.assgin(target, sources); 会将源对象的自身可枚举的属性通过get获取，然后通过目标对象taget通过set设置属性值；是浅复制；多个源对象sources有相同的属性，会使用最后一个属性的值；
+6. object.is(参数1，参数2)是一个比较，类似于===比较，唯一的特殊用处：判断+0和-0的比较不等、NaN和NaN比较不等问题；
+7. 可计算属性：以前写动态变量属性，必须通过obj[动态变量] =''; 现在可以直接在字面量申明时，通过let obj = {[动态变量]: '' }
+8. 对象属性为方法时，可以简写;同时 简写方法名与可计算属性键相互兼容****
+   #  let person = { 
+       name_: '', 
+       get name() { 
+         return this.name_; 
+       }, 
+       set name(name) { 
+         this.name_ = name; 
+       }, 
+       [sayName]() { 
+         console.log(`My name is ${this.name_}`); 
+       } 
+      }
+9. 对象解构：let { name: nameNew, age ="默认年龄" } = info; 
+   解构并不要求变量必须在解构表达式中声明。不过，如果是给事先声明的变量赋值，则赋值表达式必须包含在一对括号中：
+   ￥ let personName, personAge; 
+   let person = { 
+    name: 'Matt', 
+    age: 27 
+   }; 
+   ({name: personName, age: personAge} = person); 
+   console.log(personName, personAge); // Matt, 27
