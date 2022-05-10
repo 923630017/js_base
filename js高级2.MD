@@ -101,12 +101,32 @@
            console.log(this.name); 
          }; 
         }
-      3. 原型模式：每个构造函数都有prototype属性，是个对象，这个对象里的方法和属性都是实例共享的,实质就是原型对象共享所有实例； 
+      3. 原型模式：每个构造函数都有prototype属性，是个对象，这个对象里的方法和属性都是实例共享的,实质就是原型对象共享所有实例；实例的[[Prototype]]指针是在调用构造函数时自动赋值的，之后如果重写原型对象后 Person.prototype = {}，由于实例指针指向旧的原型对象，因此无法使用新的原型对象属性。 
         1. 往往可以通过obj.__proto__ === Person.prototype判断某一个对象的原型是不是构造函数的原型属性，还是可以通过Person.protoype.isPrototypeOf(obj)判断某一个对象是否为对象的原型；
         2. 获取某个对象obj的原型对象： Object.getPrototypeOf(obj), 类似于obj.__proto__; 重写某一个实例的原型对象：不影响构造函数原型对象和其他实例原型对象
         3. Object.setPrototypeOf(obj1, 新原型对象)， 此方法只修改了obj1原型对象，没有改变其他实例的，但是此方法不适合使用， **因此可以通过Object.create(protoObj)创建对象的同时，指定新的原型对象protoObj； 
         4. 因为constructor在原型对象上，因此实例可以直接通过obj.constructor访问；
         5. 通过obj.hasOwnPropertyy(key)判断某个属性是否是自身的属性还是原型对象上的属性， 返回布尔值；
-        6. in和原型： in有两种使用方法： 单独使用：('key1' in obj) //判断key1属性能否在obj下访问的，无论该属性是在实例上还是在原型上，只要可循环枚举；forin返回的是对象及其原型对象上可枚举的属性集合； Object.keys()返回的是对象自身可枚举的属性集合；
-       
-        
+        6. in和原型： in有两种使用方法： 单独使用：('key1' in obj) //判断key1属性能否在obj下访问的，无论该属性是在实例上还是在原型上，只要可循环枚举；forin返回的是对象及其原型对象上可枚举的属性集合； Object.keys()返回的是对象自身可枚举的属性集合；如果想获取所有的实例自身属性,包括不可枚举的=>Object.getOwnPropertyNames(obj)
+        7. 最好不用用contructor判断类型，通常通过instanceof判断；
+        8. Object.keys(obj):返回对象自身可枚举的属性， Object.values(obj)返回的是对象自身value的集合数组， Object.entries()返回的是[[key1, value1]]集合的数组;
+        9. 原型的动态性：即任何时候对原型对象修改会反映到实例上，即实例化实例之后，再在对为原型对象添加属性，实例仍然可以访问，但是如果是在实例化之后重写原型对象，那么访问重写的原型对象上的属性，是无法访问的； 原因：实例在实例化时，原型对象绑定是通过指针绑定的原型对象，如果完全重写原型对象，实例绑定的原型对象还是之前的原型对象指针，无法使用新的原型对象；
+        10. 原型创建的问题： 1.弱化构造函数传参，所以实例都会获得一样的属性值；2.原型对象上的引用类型共享，如果某一个实例修改了原型对象某个引用属性，那么所有的实例都会共享；
+12. 继承
+    1.原型链继承：实则是将父类实例化的实例赋值给字类的原型对象；
+      # function Parent() {
+        this.name = 张三丰
+      }
+      Parent.prototype.sayName() {
+        return this.name
+      }  
+      function Child(){
+        this.age = 27;
+      }
+      // 开始继承父类原型 直接将父类实例赋值给子类原型
+      Child.prototype = new Parent()
+      写其他原型属性
+      Child.prototype.sayAge(){
+        return this.age
+      }
+      
