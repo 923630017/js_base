@@ -71,8 +71,8 @@
          console.log(`My name is ${this.name_}`); 
        } 
       }
-9. 对象解构：let { name: nameNew, age ="默认年龄" } = info; 
-   解构并不要求变量必须在解构表达式中声明。不过，如果是给事先声明的变量赋值，***则赋值表达式必须包含在一对括号中：
+9. 对象解构：let { name: nameNew, age ="默认年龄" } = info;  解构相当于浅拷贝；
+   解构并不要求变量必须在解构表达式中声明。不过，如果是给事先声明的变量赋值，** 则赋值表达式必须包含在一对括号中：
    let personName, personAge; 
    let person = { 
     name: 'Matt', 
@@ -80,3 +80,25 @@
    }; 
    ({name: personName, age: personAge} = person); 
    console.log(personName, personAge); // Matt, 27
+10. 嵌套解构： let { like: { play } }  = obj; 如果是解构嵌套，=前面的解构和obj的对象属性，在外层属性不存在的情况下解构，会报错，例如前面的obj没有like属性或者等号前面的like不是obj属性，就会报错，如果是最里层的属性例如paly不存在，没有影响； 同时，如果解构过程中，如果例如嵌套解构外层属性没有导致报错，那么该属性之前的解构成功，之后的失败；
+11. 创建对象：除了Object构造函数和字面量，但创建相同类属性的对象，需要重复编写；还有其他方式；
+    1. 工厂模式:这种模式可以一下创建多个对象，但是对象都是Object,不知创建的对象类型是Person类型还是Student类型，因此不能区分对象标识
+       # function creatObj(name, age) {
+         let o = new Object();
+         o.name = name;
+         o.age = age;
+         o.getInfo(){
+           return this.name
+         }
+         return o;
+       }
+     2. 构造函数模式：优点： 显示了对象类型标识， 特点：没有显示的创建对象，将属性方法直接给this,没有return。使用new过程：内存中先创建一个新对象，将新对象的__proto__被赋值为构造函数的prototype，将this赋值为新对象，然后执行构造函数，给新对象添加属性，如果构造函数有非空对象，则返回该对象，否在返回船舰的新对象；
+       function Person(name, age, job){ 
+         this.name = name; 
+         this.age = age; 
+         this.job = job; 
+         this.sayName = function() { 
+         console.log(this.name); 
+         }; 
+        }
+        
