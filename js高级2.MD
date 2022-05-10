@@ -92,13 +92,21 @@
          }
          return o;
        }
-     2. 构造函数模式：优点： 显示了对象类型标识， 特点：没有显示的创建对象，将属性方法直接给this,没有return。使用new过程：内存中先创建一个新对象，将新对象的__proto__被赋值为构造函数的prototype，将this赋值为新对象，然后执行构造函数，给新对象添加属性，如果构造函数有非空对象，则返回该对象，否在返回船舰的新对象；
+     2. 构造函数模式：优点： 有了对象类型标识， 特点：没有显示的创建对象，将属性和方法直接给this,没有return。使用new过程：内存中先创建一个新对象，将新对象的__proto__被赋值为构造函数的prototype，将this赋值为新对象，然后执行构造函数，给新对象添加属性，如果构造函数有非空对象，则返回该对象，否在返回创建的新对象；  构造函数也存在问题，不共用方法和属性，也就是每个实例的方法不相同，导致每创建一个，就会导致需要新的内存；
        function Person(name, age, job){ 
          this.name = name; 
          this.age = age; 
          this.job = job; 
          this.sayName = function() { 
-         console.log(this.name); 
+           console.log(this.name); 
          }; 
         }
+      3. 原型模式：每个构造函数都有prototype属性，是个对象，这个对象里的方法和属性都是实例共享的,实质就是原型对象共享所有实例； 
+        1. 往往可以通过obj.__proto__ === Person.prototype判断某一个对象的原型是不是构造函数的原型属性，还是可以通过Person.protoype.isPrototypeOf(obj)判断某一个对象是否为对象的原型；
+        2. 获取某个对象obj的原型对象： Object.getPrototypeOf(obj), 类似于obj.__proto__; 重写某一个实例的原型对象：不影响构造函数原型对象和其他实例原型对象
+        3. Object.setPrototypeOf(obj1, 新原型对象)， 此方法只修改了obj1原型对象，没有改变其他实例的，但是此方法不适合使用， **因此可以通过Object.create(protoObj)创建对象的同时，指定新的原型对象protoObj； 
+        4. 因为constructor在原型对象上，因此实例可以直接通过obj.constructor访问；
+        5. 通过obj.hasOwnPropertyy(key)判断某个属性是否是自身的属性还是原型对象上的属性， 返回布尔值；
+        6. in和原型： in有两种使用方法： 单独使用：('key1' in obj) //判断key1属性能否在obj下访问的，无论该属性是在实例上还是在原型上，只要可循环枚举；forin返回的是对象及其原型对象上可枚举的属性集合； Object.keys()返回的是对象自身可枚举的属性集合；
+       
         
