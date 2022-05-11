@@ -161,4 +161,5 @@
          }
          # Child.prototype = Object.create(Parent.prototype) // 继承父类的原型 就不要实例化两次父类
            Child.prototype.contructor = Child; // 增强对象
-           
+ 13. 类
+    1.类声明时不会像函数一样，变量提升；但是类表达式var S = Class{}时会变量提升
