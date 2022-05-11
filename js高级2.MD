@@ -134,3 +134,31 @@
         Parent(this, p1)
         this.age = 27;
       }
+     3.组合继承： 构造函数和原型链继承组合：调用了两次父类; 优点是既继承了父类的原型对象，又可以往父类传参，缺点是需要实例化两次父类；
+       function Child(p1){
+         Parent(this, p1)
+         this.age = 27;
+       }
+       Child.prototype = new Prent() 
+     4.原型式继承： 和Object.create()功能类似; 利用函数传入一个原型对象用于继承，然后直接实例化返回实例； 适合于不需要单独创建构造函数的，也就是实例没有属性的情况，但是这种情况的原型属性如果是引用类型，则修改时也会共享； 
+        # funtion object(proto){
+            funtion F(){};
+            F.prototype = proto;
+            return new F();
+          }
+      5.寄生式继承： 相当于寄生于对象，添加一些属性方法，增强对象功能；就是在原型式的基础上，添加新的方法和属性; 缺点和原型式一样，原型对象属性如果是引用值，修改后会共享所有实例
+         # funtion createObject(proto){
+             const obj = object(proto) // 通过调用函数创建一个新对象
+             obj.sayName = function(){ // 通过对对象新增方法， 以此增强对象
+                .....
+             }
+             return obj
+          }
+       6.寄生式组合构造函数：寄生式继承 + 盗用构造函数继承； 既可以增强对象；往父类传参，继承父类， 同时不用实例化两次父类； 最优继承
+         # funtion Child(name) {
+            Parent.call(this, name); // 盗用构造函数继承 继承父类实例的属性
+            this.age = 14;
+         }
+         # Child.prototype = Object.create(Parent.prototype) // 继承父类的原型 就不要实例化两次父类
+           Child.prototype.contructor = Child; // 增强对象
+           
