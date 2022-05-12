@@ -162,4 +162,12 @@
          # Child.prototype = Object.create(Parent.prototype) // 继承父类的原型 就不要实例化两次父类
            Child.prototype.contructor = Child; // 增强对象
  13. 类
-    1.类声明时不会像函数一样，变量提升；但是类表达式var S = Class{}时会变量提升
+    1. 类声明式不会像函数一样，变量提升；但是类表达式var S = Class{}时会变量提升
+    2. 类的构成： 构造函数、获取函数、设置函数、静态方法、实例党方法；
+    3. 类使用表达式时，let Person = class PersonName {}; 这个时候的类表达式的名称PersonName是可选的；通过name属性可以获取类表达式名称PersonName字符串，但是通过PersonName.name获取只能再类的作用域内部访问， Person.name也可以获取PersonName；
+    4. 类构造函数
+      1. constructor 会告诉解释器在使用 new 操作符创建类的新实例时,调用contructor这个函数，创建实例过程和构造函数创建一样； 类构造函数如果返回不是this对象，而是其他的对象时，那么这样创建的实例就不会通过 instanceof 操作符检测出跟类有关联
+      2. 类构造函数和构造函数主要的区别是调用类构造函数必须使用new,而构造函数不用new时，就是以全局为this; 
+      3. 
+    
+    
