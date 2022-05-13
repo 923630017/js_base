@@ -167,7 +167,34 @@
     3. 类使用表达式时，let Person = class PersonName {}; 这个时候的类表达式的名称PersonName是可选的；通过name属性可以获取类表达式名称PersonName字符串，但是通过PersonName.name获取只能再类的作用域内部访问， Person.name也可以获取PersonName；
     4. 类构造函数
       1. constructor 会告诉解释器在使用 new 操作符创建类的新实例时,调用contructor这个函数，创建实例过程和构造函数创建一样； 类构造函数如果返回不是this对象，而是其他的对象时，那么这样创建的实例就不会通过 instanceof 操作符检测出跟类有关联
-      2. 类构造函数和构造函数主要的区别是调用类构造函数必须使用new,而构造函数不用new时，就是以全局为this; 
-      3. 
-    
-    
+      2. 类构造函数和构造函数主要的区别是调用类构造函数必须使用new,而构造函数不用new时，就是以全局为this; 类构造函数实例化之后，实例也可以再利用new引用它， let p1 = new P(), let p2 = new p1.contructor()，同样， 构造函数new实例同一可以这样  
+      3. 其实类是一个特殊的函数 通过tapeof判断就是可以验证这一点 typeof P === 'function'
+      4. 类也有 prototype 属性，这是原型，同样constructor属性也是指向类本身； 可以用instanceof判断类构造函数原型对象是否在实例原型链上；** 类在被new过程中，默认new直接把类本身当成了构造函数，类中定义的 constructor 方法不会被当成构造函数，因此在利用intansceOf判断时，p intanceOf P => true;p intanceOf P.constructor => false;当然如果直接new 类的构造函数constructor,则instanceof判断就是反转了；
+      5. 类可以立即执行： class P{}();
+    5. 实例、原型、类成员
+      1. 类的构造函数里可以添加任何属性，这些属性都不是原型上的属性，因此这些属性不会共享，都是每个实例独享的；
+      2. 原型的方法都是定义在类中的；没有在类构造函数中；如果定义的是属性：a = '23'这种；是在实例上的属性，不是原型上的属性，只有方法才是在原型上；
+      3. 类定义还可以获取和设置访问器；
+         # class P{
+           get name(){
+             return this.name_
+           },
+           set name(newVal){
+             this.name_ = newVal    
+           }
+         }
+      4. 类的静态方法: 静态方法需要用static为前缀定义函数, 静态函数中的this指类本身，而类构造函数或者其他原型方法等this指的是实例本身；静态方法只能被类自身调用，不能被实例调用， 同时在静态方法中只能通过this调用类的静态方法，不能调用其他方法或者属性；
+         # class P{
+           static getName(){
+              this.其他静态方法()
+           },
+         }
+       5. 类支持在原型对象和类本身（静态方法）上定义生成器 未完
+         # class P {
+           *createNameItertor(){
+              yield '实例生成器'
+           }
+           static *createName(){
+              yield '类自身生成器'
+           }
+         }
